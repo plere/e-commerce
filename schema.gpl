@@ -1,0 +1,25 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  id: ID!
+  password: String!
+  address: String!
+  phoneNumber: Int!
+}
+
+type Query {
+  getUser: [User!]!
+}
+
+type Mutation {
+  createUser(userInput: UserInput!): Boolean!
+}
+
+input UserInput {
+  id: ID!
+  password: String!
+  address: String!
+  phoneNumber: Int!
+}
