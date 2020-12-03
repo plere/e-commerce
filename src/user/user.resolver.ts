@@ -1,6 +1,6 @@
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, ID, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { User } from 'src/entities/user.entity';
-import { UserInput } from './user.input';
+import { UserInput, UserUpdateInput } from './user.input';
 import { UserService } from './user.service';
 
 @Resolver()
@@ -22,5 +22,14 @@ export class UserResolver {
         else {
             throw new Error('check id or phoneNumber');
         }
+    }
+
+    @Mutation(() => Boolean)
+    async updateUser(@Args({name: 'id', type: () => ID}) id: string,
+    @Args({name: 'updateInfo', type: () => UserUpdateInput}) updateInfo: UserUpdateInput) {
+        if(await this.userService.updateUser(id, updateInfo))
+            return true;
+        else
+            throw new Error('check phoneNumber');
     }
 }
