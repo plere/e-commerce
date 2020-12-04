@@ -1,5 +1,6 @@
 import { Field, ID, Int, ObjectType } from '@nestjs/graphql';
-import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, OneToMany, OneToOne, PrimaryColumn } from 'typeorm';
+import { Order } from './order.entity';
 
 @Entity()
 @ObjectType()
@@ -19,4 +20,7 @@ export class User{
   @Column({ nullable: false, unique: true })
   @Field(() => Int, {nullable: false})
   phoneNumber: number;
+
+  @ManyToOne(type => Order, order => order.order_number)
+  order_list?: Order[]
 }
