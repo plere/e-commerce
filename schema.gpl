@@ -2,20 +2,59 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Store {
+  store_name: ID!
+  password: String!
+  item_list: Item!
+  store_description: String
+}
+
+type Item {
+  item_number: String!
+  item_name: String!
+  order_list: Order!
+  stock_count: Int!
+  item_price: Int!
+  store_id: Store!
+  item_description: String
+}
+
+type Order {
+  order_number: ID!
+  user_id: User!
+  item_id: Item!
+  order_date: Date!
+  shipping_status: SHIPPING_STATUS_ENUM!
+}
+
+"""Date custom scalar type"""
+scalar Date
+
+enum SHIPPING_STATUS_ENUM {
+  ORDER_OK
+  SHIPPING_READY
+  SHIPPING_START
+  SHIPPING_COMPLETE
+}
+
 type User {
   id: ID!
   password: String!
   address: String!
   phoneNumber: Int!
+  order_list: Order!
 }
 
 type Query {
   getUser: [User!]!
+  getStore: [Store!]!
 }
 
 type Mutation {
   createUser(userInput: UserInput!): Boolean!
   updateUser(updateInfo: UserUpdateInput!, id: ID!): Boolean!
+  createStore(storeInput: StoreInput!): Boolean!
+  updateStore(updateInfo: StoreUpdateInput!, store_name: ID!): Boolean!
 }
 
 input UserInput {
@@ -29,4 +68,15 @@ input UserUpdateInput {
   password: String
   address: String
   phoneNumber: Int
+}
+
+input StoreInput {
+  store_name: ID!
+  password: String!
+  store_description: String
+}
+
+input StoreUpdateInput {
+  password: String
+  store_description: String
 }

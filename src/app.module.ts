@@ -4,6 +4,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
+import { StoreModule } from './store/store.module';
+import { DateScalar } from './custom.scalar';
 
 @Module({
   imports: [
@@ -11,9 +13,10 @@ import { UserModule } from './user/user.module';
       autoSchemaFile: 'schema.gpl'
     }),
     TypeOrmModule.forRoot(),
-    UserModule
+    UserModule,
+    StoreModule
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, DateScalar],
 })
 export class AppModule {}
