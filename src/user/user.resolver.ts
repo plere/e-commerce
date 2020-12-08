@@ -15,7 +15,6 @@ export class UserResolver {
     
     @Mutation(() => Boolean) 
     async createUser(@Args({name: 'userInput', type : () => UserInput}) bodyData: UserInput) {
-        console.log(bodyData);
         if(await this.userService.createUser(bodyData)) {
             return true;
         }

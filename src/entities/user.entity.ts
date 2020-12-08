@@ -22,5 +22,6 @@ export class User{
   phoneNumber: number;
 
   @ManyToOne(type => Order, order => order.order_number)
+  @Field(() => Order)
   order_list?: Order[]
 }

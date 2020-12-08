@@ -22,6 +22,9 @@ export class Order {
     @JoinColumn()
     item_id: Item;
 
+    @Column({type: 'date'})
+    order_date: Date;
+
     @Column('text', {default: SHIPPING_STATUS_ENUM.ORDER_OK})
     shipping_status: SHIPPING_STATUS_ENUM;
 }

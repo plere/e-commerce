@@ -19,10 +19,10 @@ export class Item {
     @Column({ nullable: false })
     item_price: number;
 
-    @OneToMany(type => Store, store => store.store_id)
+    @OneToMany(type => Store, store => store.store_name)
     @JoinColumn()
     store_id: Store
     
-    @Column()
+    @Column({ nullable: true })
     item_description?: string;
 }
