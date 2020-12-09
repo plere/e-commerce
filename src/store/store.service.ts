@@ -40,4 +40,13 @@ export class StoreService {
         return true;
     }
 
+    async findOne(name: string) {
+        let store = await this.storeRepository.findOne({store_name: name});
+        if(store) {
+            return store;
+        } else {
+            return null;
+        }
+    }
+
 }

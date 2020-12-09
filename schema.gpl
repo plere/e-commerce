@@ -12,7 +12,7 @@ type Store {
 type Item {
   item_number: String!
   item_name: String!
-  order_list: Order!
+  order_list: Order
   stock_count: Int!
   item_price: Int!
   store_id: Store!
@@ -55,6 +55,7 @@ type Mutation {
   updateUser(updateInfo: UserUpdateInput!, id: ID!): Boolean!
   createStore(storeInput: StoreInput!): Boolean!
   updateStore(updateInfo: StoreUpdateInput!, store_name: ID!): Boolean!
+  storeLogin(password: String!, store_name: String!): JSON!
 }
 
 input UserInput {
@@ -80,3 +81,8 @@ input StoreUpdateInput {
   password: String
   store_description: String
 }
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON @specifiedBy(url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf")

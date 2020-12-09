@@ -15,7 +15,7 @@ export class Item {
     item_name: string;
 
     @ManyToOne(type => Order, order => order.order_number)
-    @Field(() => Order)
+    @Field(() => Order, {nullable: true})
     order_list?: Order[];
 
     @Column({ nullable: false })

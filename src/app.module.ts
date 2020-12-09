@@ -5,16 +5,20 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { StoreModule } from './store/store.module';
-import { DateScalar } from './custom.scalar';
+import { DateScalar } from './scalarType/custom.scalar';
+import { AuthModule } from './auth/auth.module';
+import { PassportModule } from '@nestjs/passport';
 
 @Module({
   imports: [
     GraphQLModule.forRoot({
-      autoSchemaFile: 'schema.gpl'
+      autoSchemaFile: 'schema.gpl',
     }),
     TypeOrmModule.forRoot(),
+    PassportModule,
     UserModule,
-    StoreModule
+    StoreModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService, DateScalar],
