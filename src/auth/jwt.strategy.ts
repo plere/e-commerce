@@ -14,7 +14,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 
   async validate(payload: any) {
       if(payload.isStore) {
-          return await this.authService.validateStore(payload.name, payload.pwd);            
+          return await this.authService.validateStore(payload.id, payload.pwd);            
       }
   }
 }

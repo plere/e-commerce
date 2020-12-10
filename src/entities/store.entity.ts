@@ -1,5 +1,5 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
-import { Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
 import { Item } from './item.entity';
 
 @Entity()
@@ -13,7 +13,7 @@ export class Store {
     @Field()
     password: string;
 
-    @ManyToOne(type => Item, item => item.item_number)
+    @OneToMany(type => Item, item => item.store_id, {cascade: ["insert", "update"]})
     @Field(() => Item)
     item_list?: Item[]
     
