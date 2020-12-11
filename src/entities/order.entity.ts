@@ -22,12 +22,10 @@ export class Order {
     order_number: string;
 
     @OneToMany(type => User, user => user.id)
-    @JoinColumn()
     @Field(() => User)
     user_id: User;
 
     @OneToMany(type => Item, item => item.item_number)
-    @JoinColumn()
     @Field(() => Item)
     item_id: Item;
 

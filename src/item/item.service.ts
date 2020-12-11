@@ -19,4 +19,8 @@ export class ItemService {
                     
         return true;
     }
+
+    async removeItem(item_number: number) {
+        return await this.itemRepository.delete(item_number);
+    }
 }
