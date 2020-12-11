@@ -3,12 +3,14 @@ import { ItemService } from './item.service';
 import { ItemResolver } from './item.resolver';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Item } from 'src/entities/item.entity';
-import { Store } from 'src/entities/store.entity';
+import { StoreModule } from 'src/store/store.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Item, Store])
+    TypeOrmModule.forFeature([Item]),
+    StoreModule
   ],  
-  providers: [ItemService, ItemResolver]
+  providers: [ItemService, ItemResolver],
+  exports: [ItemService]
 })
 export class ItemModule {}

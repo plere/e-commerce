@@ -21,7 +21,7 @@ export class User{
   @Field(() => Int, {nullable: false})
   phoneNumber: number;
 
-  @ManyToOne(type => Order, order => order.order_number)
+  @OneToMany(type => Order, order => order.user_id, {cascade: ["insert", "update"]})
   @Field(() => Order)
   order_list?: Order[]
 }

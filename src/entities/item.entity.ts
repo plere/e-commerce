@@ -1,5 +1,5 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Order } from './order.entity';
 import { Store } from './store.entity';
 
@@ -8,19 +8,23 @@ import { Store } from './store.entity';
 export class Item {
     @PrimaryGeneratedColumn()
     @Field()
-    item_number?: string;
+    item_number?: number;
 
     @Column({nullable: false})
     @Field()
     item_name: string;
 
-    @ManyToOne(type => Order, order => order.order_number)
+    @OneToMany(type => Order, order => order.item_id, {cascade: ["insert", "update"]})
     @Field(() => Order, {nullable: true})
     order_list?: Order[];
 
     @Column({ nullable: false })
     @Field(() => Int)
     stock_count: number;
+
+    @Column({ nullable: false, default: 0 })
+    @Field(() => Int, {defaultValue: 0})
+    item_order_count: number;
 
     @Column({ nullable: false })
     @Field(() => Int)

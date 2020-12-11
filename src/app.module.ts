@@ -9,6 +9,7 @@ import { DateScalar } from './scalarType/custom.scalar';
 import { AuthModule } from './auth/auth.module';
 import { PassportModule } from '@nestjs/passport';
 import { ItemModule } from './item/item.module';
+import { OrderModule } from './order/order.module';
 
 @Module({
   imports: [
@@ -20,7 +21,8 @@ import { ItemModule } from './item/item.module';
     UserModule,
     StoreModule,
     AuthModule,
-    ItemModule
+    ItemModule,
+    OrderModule
   ],
   controllers: [AppController],
   providers: [AppService, DateScalar],

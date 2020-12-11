@@ -10,10 +10,11 @@ type Store {
 }
 
 type Item {
-  item_number: String!
+  item_number: Float!
   item_name: String!
   order_list: Order
   stock_count: Int!
+  item_order_count: Int!
   item_price: Int!
   store_id: Store!
   item_description: String
@@ -47,7 +48,6 @@ type User {
 
 type Query {
   getUser: [User!]!
-  sess: Boolean!
   getStore: [Store!]!
 }
 
@@ -60,6 +60,7 @@ type Mutation {
   storeLogin(password: String!, store_name: String!): JSON!
   createItem(ItemInput: ItemInput!): Boolean!
   removeItem(item_number: ID!): Boolean!
+  createOrder(order_count: Int!, item_number: ID!): Boolean!
 }
 
 input UserInput {

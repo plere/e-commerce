@@ -11,15 +11,22 @@ export class ItemResolver {
     @UseGuards(JwtAuthGuard)
     @Mutation(() => Boolean)
     async createItem(@Args({name: 'ItemInput', type: () => ItemInput}) input: ItemInput, @Context() ctx) {
-        return await this.itemService.createItem(input, ctx.req.user.id);
+        if(ctx.req.user.isStore)
+            return await this.itemService.createItem(input, ctx.req.user.id);
+        else
+            throw new Error('You are not Store');
     }
 
     @UseGuards(JwtAuthGuard)
     @Mutation(() => Boolean)
-    async removeItem(@Args({name: 'item_number', type: () => ID}) item_number: number) {
-        if(await (await this.itemService.removeItem(item_number)).affected > 0)
-            return true;
-        else
-            return false;
+    async removeItem(@Args({name: 'item_number', type: () => ID}) item_number: number, @Context() ctx) {
+        if(ctx.req.user.isStore) {
+            if(await (await this.itemService.removeItem(item_number)).affected > 0)
+                return true;
+            else
+                return false;
+        } else {
+            throw new Error('You are not Store');
+        }        
     }
 }

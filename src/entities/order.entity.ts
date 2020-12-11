@@ -1,5 +1,5 @@
 import { Field, ID, ObjectType, registerEnumType } from '@nestjs/graphql';
-import { Column, Entity, JoinColumn, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Item } from './item.entity';
 import { User } from './user.entity';
 
@@ -19,13 +19,13 @@ registerEnumType(SHIPPING_STATUS_ENUM, {
 export class Order {
     @PrimaryGeneratedColumn()
     @Field(() => ID)
-    order_number: string;
+    order_number?: string;
 
-    @OneToMany(type => User, user => user.id)
+    @ManyToOne(type => User, user => user.id)
     @Field(() => User)
     user_id: User;
 
-    @OneToMany(type => Item, item => item.item_number)
+    @ManyToOne(type => Item, item => item.item_number)
     @Field(() => Item)
     item_id: Item;
 
