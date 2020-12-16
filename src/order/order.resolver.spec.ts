@@ -1,4 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { OrderModule } from './order.module';
 import { OrderResolver } from './order.resolver';
 
 describe('OrderResolver', () => {
@@ -6,6 +8,10 @@ describe('OrderResolver', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
+      imports: [
+        TypeOrmModule.forRoot(),
+        OrderModule
+      ],
       providers: [OrderResolver],
     }).compile();
 

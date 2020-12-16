@@ -7,7 +7,10 @@
     "database": "study",
     "synchronize": false,
     "logging": false,
-    "entities": ["dist/**/*.entity{.ts,.js}"],    
+    "entities": [
+        "dist/**/*.entity{.ts,.js}",
+        "src/**/*.entity{.ts,.js}"
+    ],
     "migrations": ["dist/migrations/**/*{.ts,.js}"],
     "cli": {
     "entitiesDir": "src/entities",

@@ -2,7 +2,7 @@ import { Field, ID, Int, ObjectType } from '@nestjs/graphql';
 import { Column, Entity, ManyToOne, OneToMany, OneToOne, PrimaryColumn } from 'typeorm';
 import { Order } from './order.entity';
 
-@Entity()
+@Entity('user')
 @ObjectType()
 export class User{
   @PrimaryColumn()

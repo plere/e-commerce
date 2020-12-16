@@ -3,7 +3,7 @@ import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'ty
 import { Order } from './order.entity';
 import { Store } from './store.entity';
 
-@Entity()
+@Entity('item')
 @ObjectType()
 export class Item {
     @PrimaryGeneratedColumn()

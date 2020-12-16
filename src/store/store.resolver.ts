@@ -1,9 +1,9 @@
 import { Args, ID, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { Store } from 'src/entities/store.entity';
+import { Store } from '@src/entities/store.entity';
 import { StoreInput, StoreUpdateInput } from './store.input';
 import { StoreService } from './store.service';
 import graphqlTypeJson from 'graphql-type-json'
-import { AuthService } from 'src/auth/auth.service';
+import { AuthService } from '@src/auth/auth.service';
 import { forwardRef, Inject } from '@nestjs/common';
 
 @Resolver()
@@ -37,5 +37,5 @@ export class StoreResolver {
             return await this.authService.storeLogin(store_name, pwd);
         else 
             throw new Error('check store name or password');
-    }    
+    }
 }

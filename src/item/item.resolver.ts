@@ -1,6 +1,6 @@
 import { UseGuards } from '@nestjs/common';
 import { Args, Context, ID, Mutation, Resolver } from '@nestjs/graphql';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { JwtAuthGuard } from '@src/auth/jwt-auth.guard';
 import { ItemInput } from './item.input';
 import { ItemService } from './item.service';
 
@@ -10,7 +10,7 @@ export class ItemResolver {
 
     @UseGuards(JwtAuthGuard)
     @Mutation(() => Boolean)
-    async createItem(@Args({name: 'ItemInput', type: () => ItemInput}) input: ItemInput, @Context() ctx) {
+    async createItem(@Args({name: 'ItemInput', type: () => ItemInput}) input: ItemInput, @Context() ctx) {        
         if(ctx.req.user.isStore)
             return await this.itemService.createItem(input, ctx.req.user.id);
         else

@@ -1,11 +1,20 @@
+import { forwardRef } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthModule } from '@src/auth/auth.module';
+import { StoreModule } from './store.module';
 import { StoreResolver } from './store.resolver';
 
-describe('StoreResolver', () => {
-  let resolver: StoreResolver;
+let resolver: StoreResolver;
 
+describe('StoreResolver', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
+      imports: [
+        TypeOrmModule.forRoot(),
+        forwardRef(() => AuthModule),
+        StoreModule
+      ],
       providers: [StoreResolver],
     }).compile();
 

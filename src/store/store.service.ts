@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Store } from 'src/entities/store.entity';
 import { Repository } from 'typeorm';
 import { StoreUpdateInput } from './store.input';
+import { Store } from '@src/entities/store.entity';
 
 @Injectable()
 export class StoreService {

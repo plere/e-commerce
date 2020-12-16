@@ -1,6 +1,6 @@
 import { UseGuards } from '@nestjs/common';
 import { Args, Context, ID, Int, Mutation, Resolver } from '@nestjs/graphql';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { JwtAuthGuard } from '@src/auth/jwt-auth.guard';
 import { OrderService } from './order.service';
 
 @Resolver()

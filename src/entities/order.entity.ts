@@ -14,7 +14,7 @@ registerEnumType(SHIPPING_STATUS_ENUM, {
     name: 'SHIPPING_STATUS_ENUM',
   });  
 
-@Entity()
+@Entity('order')
 @ObjectType()
 export class Order {
     @PrimaryGeneratedColumn()
