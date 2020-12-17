@@ -20,13 +20,13 @@ export class UserService {
         if(existUser) {
             return false;
 
-        } else {
+        } else {            
             let newUser = await this.userRepository.create(data);
             await this.userRepository.save(newUser);
             return true;
         }
     }
-    async getUser() {
+    async getUsers() {
         return await this.userRepository.find();
     }
 
@@ -37,7 +37,8 @@ export class UserService {
             }
         }
         
-        let user = await this.userRepository.findOne({id: id});
+        let user = await this.userRepository.findOne(id);
+
         for(let key in data) {
             user[key] = data[key];
         }
@@ -48,5 +49,21 @@ export class UserService {
 
     async findOne(id: string) {
         return await this.userRepository.findOne(id);
+    }
+
+    async remove(id: string, pwd: string) {        
+        let user = await this.userRepository.findOne({
+            where: [
+                {id: id},
+                {password: pwd}
+            ]
+        });
+
+        if(user) {
+            await this.userRepository.delete(user);
+            return true;
+        } else {
+            return false;
+        }
     }
 }

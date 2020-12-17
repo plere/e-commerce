@@ -3,9 +3,8 @@ import { User } from '@src/entities/user.entity';
 import { UserInput, UserUpdateInput } from './user.input';
 import { UserService } from './user.service';
 import graphqlTypeJson from 'graphql-type-json'
-import { forwardRef, Inject, UseGuards } from '@nestjs/common';
+import { forwardRef, Inject } from '@nestjs/common';
 import { AuthService } from '@src/auth/auth.service';
-import { JwtAuthGuard } from '@src/auth/jwt-auth.guard';
 
 @Resolver()
 export class UserResolver {
@@ -13,9 +12,10 @@ export class UserResolver {
         private readonly userService: UserService,
         @Inject(forwardRef(() => AuthService)) private authService: AuthService
     ) { }
+
     @Query(() => [User])
-    async getUser() {
-        return this.userService.getUser();
+    async getUsers() {
+        return this.userService.getUsers();
     }
     
     @Mutation(() => Boolean) 
@@ -43,5 +43,13 @@ export class UserResolver {
             return await this.authService.userLogin(id, pwd);
         else 
             throw new Error('check user id or password');
+    }
+
+    async userRemove(id: string, pwd: string) {
+        return await this.userService.remove(id, pwd);
+    }
+
+    async getUser(id: string) {
+        return await this.userService.findOne(id);
     }
 }

@@ -47,7 +47,7 @@ type User {
 }
 
 type Query {
-  getUser: [User!]!
+  getUsers: [User!]!
   getStore: [Store!]!
 }
 
