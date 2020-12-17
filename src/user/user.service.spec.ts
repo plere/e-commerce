@@ -47,6 +47,9 @@ describe('create user', () => {
 
   it('return true', async () => {
     let result = await service.createUser(newUser);
+    expect(result).toEqual(true);    
+
+    result = await service.remove(newUser.id, newUser.password);
     expect(result).toEqual(true);
   });
 

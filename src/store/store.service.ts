@@ -49,4 +49,14 @@ export class StoreService {
         }
     }
 
+    async remove(id: string, pwd: string) {
+        let store = await this.storeRepository.findOne({store_name: id, password: pwd});
+        if(store) {
+            await this.storeRepository.delete(store);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
