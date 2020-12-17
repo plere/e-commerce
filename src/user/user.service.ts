@@ -9,6 +9,7 @@ export class UserService {
     constructor(
         @InjectRepository(User) private readonly userRepository: Repository<User>
     ) { }
+
     async createUser(data: User): Promise<Boolean> {
         let existUser = await this.userRepository.findOne({
             where: [
@@ -26,6 +27,7 @@ export class UserService {
             return true;
         }
     }
+
     async getUsers() {
         return await this.userRepository.find();
     }
@@ -51,14 +53,8 @@ export class UserService {
         return await this.userRepository.findOne(id);
     }
 
-    async remove(id: string, pwd: string) {        
-        let user = await this.userRepository.findOne({
-            where: [
-                {id: id},
-                {password: pwd}
-            ]
-        });
-
+    async remove(id: string, pwd: string) {
+        let user = await this.userRepository.findOne({id: id, password: pwd});
         if(user) {
             await this.userRepository.delete(user);
             return true;

@@ -2,13 +2,13 @@ import { forwardRef } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from '@src/auth/auth.module';
-import { UserInput } from './user.input';
+import { User } from '@src/entities/user.entity';
 import { UserModule } from './user.module';
 import { UserResolver } from './user.resolver';
 
 let resolver: UserResolver;
-let user: UserInput = {
-  id: "testId_01",
+let user: User = {
+  id: "testId_user_resolver_01",
   password: "test",
   address: "seoul",
   phoneNumber: 12345
@@ -49,8 +49,8 @@ describe('get User', () => {
 })
 
 describe('create user and remove user', () => {
-  let newUser: UserInput = {
-    id: "testId_02",
+  let newUser: User = {
+    id: "testId_user_resolver_02",
     password: "test",
     address: "busan",
     phoneNumber: 123444
@@ -84,8 +84,8 @@ describe('update user', () => {
   });
 
   it('throw err', async () => {
-    let newUser: UserInput = {
-      id: "testId_03",
+    let newUser: User = {
+      id: "testId_user_resolver_03",
       password: "test",
       address: "busan",
       phoneNumber: 123444
