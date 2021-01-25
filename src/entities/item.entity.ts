@@ -1,5 +1,6 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Cart } from './cart.entity';
 import { Order } from './order.entity';
 import { Store } from './store.entity';
 
@@ -37,4 +38,8 @@ export class Item {
     @Column({ nullable: true })
     @Field({ nullable: true })
     item_description?: string;
+
+    @OneToMany(type => Cart, cart => cart.item_number, {cascade: ["insert", "update"]})
+    @Field(() => Cart)
+    cart_list?: Cart[]
 }

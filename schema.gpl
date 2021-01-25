@@ -2,24 +2,6 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Store {
-  store_name: ID!
-  password: String!
-  item_list: Item!
-  store_description: String
-}
-
-type Item {
-  item_number: Float!
-  item_name: String!
-  order_list: Order
-  stock_count: Int!
-  item_order_count: Int!
-  item_price: Int!
-  store_id: Store!
-  item_description: String
-}
-
 type Order {
   order_number: ID!
   user_id: User!
@@ -38,12 +20,39 @@ enum SHIPPING_STATUS_ENUM {
   SHIPPING_COMPLETE
 }
 
+type Store {
+  store_name: ID!
+  password: String!
+  item_list: Item!
+  store_description: String
+}
+
+type Item {
+  item_number: Float!
+  item_name: String!
+  order_list: Order
+  stock_count: Int!
+  item_order_count: Int!
+  item_price: Int!
+  store_id: Store!
+  item_description: String
+  cart_list: Cart!
+}
+
+type Cart {
+  cart_number: Float!
+  user_id: User!
+  item_number: User!
+  cart_count: Int!
+}
+
 type User {
   id: ID!
   password: String!
   address: String!
   phoneNumber: Int!
   order_list: Order!
+  cart_list: Cart!
 }
 
 type Query {
