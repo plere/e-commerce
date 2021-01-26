@@ -42,7 +42,7 @@ type Item {
 type Cart {
   cart_number: Float!
   user_id: User!
-  item_number: User!
+  item_number: Item!
   cart_count: Int!
 }
 
@@ -70,6 +70,7 @@ type Mutation {
   createItem(ItemInput: ItemInput!): Boolean!
   removeItem(item_number: ID!): Boolean!
   createOrder(order_count: Int!, item_number: ID!): Boolean!
+  setCartNonLogin(cartInput: CartInput!): Boolean!
 }
 
 input UserInput {
@@ -106,4 +107,9 @@ input ItemInput {
   stock_count: Int!
   item_price: Int!
   item_description: String
+}
+
+input CartInput {
+  item_number: Int!
+  cart_count: Int!
 }

@@ -10,11 +10,13 @@ import { AuthModule } from './auth/auth.module';
 import { PassportModule } from '@nestjs/passport';
 import { ItemModule } from './item/item.module';
 import { OrderModule } from './order/order.module';
+import { CartModule } from './cart/cart.module';
 
 @Module({
   imports: [
     GraphQLModule.forRoot({
       autoSchemaFile: 'schema.gpl',
+      context: ({ req, res }) => ({ req, res })
     }),
     TypeOrmModule.forRoot(),
     PassportModule,
@@ -22,7 +24,8 @@ import { OrderModule } from './order/order.module';
     StoreModule,
     AuthModule,
     ItemModule,
-    OrderModule
+    OrderModule,
+    CartModule
   ],
   controllers: [AppController],
   providers: [AppService, DateScalar],

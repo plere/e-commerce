@@ -1,4 +1,4 @@
-import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { Field, InputType, Int, ObjectType } from '@nestjs/graphql';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Item } from './item.entity';
 import { User } from './user.entity';
@@ -15,7 +15,7 @@ export class Cart {
     user_id: User;
 
     @ManyToOne(type => Item, item => item.cart_list, {nullable: false})
-    @Field(() => User)
+    @Field(() => Item)
     item_number: Item;
 
     @Column({ nullable: false})
