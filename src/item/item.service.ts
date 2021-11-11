@@ -32,6 +32,10 @@ export class ItemService {
         return await this.itemRepository.findOne(item_number);
     }
 
+    async findAll() {
+        return await this.itemRepository.find();
+    }
+
     async save(newItem: Item) {
         return await this.itemRepository.save(newItem);
     }
