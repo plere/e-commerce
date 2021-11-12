@@ -23,6 +23,8 @@ enum SHIPPING_STATUS_ENUM {
 type Store {
   store_name: ID!
   password: String!
+  store_email: String!
+  store_tel: String!
   item_list: Item!
   store_description: String
 }
@@ -94,11 +96,17 @@ scalar JSON @specifiedBy(url: "http://www.ecma-international.org/publications/fi
 input StoreInput {
   store_name: ID!
   password: String!
+  password_confirm: String!
+  store_email: String!
+  store_tel: String!
   store_description: String
 }
 
 input StoreUpdateInput {
   password: String
+  password_confirm: String
+  store_email: String
+  store_tel: String
   store_description: String
 }
 

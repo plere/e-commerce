@@ -10,8 +10,16 @@ export class Store {
     store_name: string;    
 
     @Column({ nullable: false })
-    @Field()
+    @Field({nullable: false})
     password: string;
+
+    @Column({nullable: false})
+    @Field({nullable: false})
+    store_email: string;
+
+    @Column({ nullable: false, unique: true })
+    @Field({nullable: false})
+    store_tel: string;
 
     @OneToMany(type => Item, item => item.store_id, {cascade: ["insert", "update"]})
     @Field(() => Item)

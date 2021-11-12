@@ -4,6 +4,7 @@ import { StoreResolver } from './store.resolver';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Store } from '@src/entities/store.entity';
 import { AuthModule } from '@src/auth/auth.module';
+import { StoreController } from './store.controller';
 
 @Module({
   imports: [
@@ -11,6 +12,7 @@ import { AuthModule } from '@src/auth/auth.module';
     forwardRef(() => AuthModule)
 ],
   providers: [StoreService, StoreResolver],
-  exports: [StoreService]
+  exports: [StoreService],
+  controllers: [StoreController]
 })
 export class StoreModule {}

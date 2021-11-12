@@ -7,6 +7,15 @@ export class StoreInput {
     
     @Field()
     readonly password!: string;
+
+    @Field()
+    readonly password_confirm: string;
+
+    @Field()
+    readonly store_email: string;
+
+    @Field()
+    readonly store_tel: string;
     
     @Field({nullable: true})
     readonly store_description?: string;
