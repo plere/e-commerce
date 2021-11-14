@@ -1,6 +1,6 @@
 import { UseGuards } from '@nestjs/common';
 import { Args, Context, ID, Mutation, Resolver } from '@nestjs/graphql';
-import { JwtAuthGuard } from '@src/auth/jwt-auth.guard';
+import { JwtGraphQLAuthGuard } from '@src/auth/jwt-auth.guard';
 import { ItemInput } from './item.input';
 import { ItemService } from './item.service';
 
@@ -8,7 +8,7 @@ import { ItemService } from './item.service';
 export class ItemResolver {
     constructor(private readonly itemService: ItemService) {}
 
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(JwtGraphQLAuthGuard)
     @Mutation(() => Boolean)
     async createItem(@Args({name: 'ItemInput', type: () => ItemInput}) input: ItemInput, @Context() ctx) {        
         if(ctx.req.user.isStore)
@@ -17,7 +17,7 @@ export class ItemResolver {
             throw new Error('You are not Store');
     }
 
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(JwtGraphQLAuthGuard)
     @Mutation(() => Boolean)
     async removeItem(@Args({name: 'item_number', type: () => ID}) item_number: number, @Context() ctx) {
         if(ctx.req.user.isStore) {

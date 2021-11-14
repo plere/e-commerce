@@ -14,7 +14,7 @@ export class AuthService {
     async validateUser(name: string, pwd: string): Promise<any> {
         const user = await this.userService.findOne(name);
         if (user && user.password === pwd) {
-            return {id: name, pwd: pwd, isStore: false};
+            return {id: name, isStore: false};
         }
         return null;
     }
@@ -29,7 +29,7 @@ export class AuthService {
     async validateStore(name: string, pwd: string): Promise<any> {
         const store = await this.storeService.findOne(name);
         if (store && store.password === pwd) {
-            return {id: name, pwd: pwd, isStore: true};
+            return {id: name, isStore: true};
         }
         return null;
     }
