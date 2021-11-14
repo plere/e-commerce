@@ -18,11 +18,7 @@ export class StoreResolver {
 
     @Mutation(() => Boolean)
     async createStore(@Args({name: 'storeInput', type: () => StoreInput}) input: StoreInput) {
-        if(await this.storeService.createStore(input)) {
-            return true;
-        } else {
-            throw new Error('check store name');
-        }
+        return await this.storeService.createStore(input);
     }
 
     @Mutation(() => Boolean)

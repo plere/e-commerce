@@ -13,19 +13,22 @@ export class StoreService {
     }
 
     async createStore(data: Store) {
+        //schema 유효한지 검사
         let existStore = await this.storeRepository.findOne({
             where: [
-                {store_name: data.store_name}
+                {store_name: data.store_name},
+                {store_email: data.store_email},
+                {store_tel: data.store_tel}
             ]
         });
 
         if(existStore) {
-            return false;
+            return null;
 
         } else {
             let newStore = await this.storeRepository.create(data);
             await this.storeRepository.save(newStore);
-            return true;
+            return newStore;
         }
     }
 
